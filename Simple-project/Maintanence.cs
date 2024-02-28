@@ -8,7 +8,7 @@ namespace Simple_project
 {
     class Maintanence : Employee
     {
-
+        public const decimal commosion = 0.06m;
 
 
     }
