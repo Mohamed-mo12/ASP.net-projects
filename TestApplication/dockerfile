@@ -1,0 +1,32 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+WORKDIR /source
+
+COPY *.sln .
+
+COPY TestApplication/*.csproj ./TestApplication/
+
+RUN dotnet restore
+
+COPY TestApplication/. ./TestApplication/
+
+WORKDIR /source/TestApplication
+
+RUN dotnet publish -c release -o /app --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+WORKDIR /app
+
+COPY --from=build /app ./
+
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+
+ENV ASPNETCORE_URLS=http://+:80
+
+
+EXPOSE 80
+
+ENTRYPOINT ["dotnet", "TestApplication.dll"]
+
