@@ -1,0 +1,96 @@
+﻿@{
+}
+@model Course
+
+@{
+   
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create a New Course</h2>
+        <form asp-action="saveAdd" asp-controller="Course" method="post">
+            <label asp-for="name">Course Name:</label><br />
+            <input asp-for="name"><br>
+            <span asp-validation-for="name"></span>
+          
+
+
+
+            <label asp-for="degree"></label><br>
+            <input asp-for="degree"><br>
+            <span asp-validation-for="degree"></span>
+           
+
+            <label asp-for="Mindegree"></label><br>
+            <input asp-for="Mindegree"><br>
+             <span asp-validation-for="Mindegree"></span>
+
+            <input type="submit" value="Create Course">
+        </form>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+ <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+ <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
