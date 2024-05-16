@@ -1,4 +1,5 @@
 using E_commerce.Models;
+using E_commerce.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddScoped<ICategoriesRepo,CategoriesRepo>();
+builder.Services.AddScoped<IDevicesRepo,DevicesRepo>();
+builder.Services.AddScoped<IGamesRepo, GamesRepo>();
+
+
 
 var connection =builder.Configuration.GetConnectionString("DB");
 

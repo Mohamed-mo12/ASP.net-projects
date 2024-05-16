@@ -1,0 +1,28 @@
+﻿@using E_commerce.Setting
+@model Game
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="card border-success rounded-4 mt-5">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="text-primary">@Model.Name</h3>
+                <p class="lead" style="line-height: 1.6;">@Model.Description</p>
+                <p class="text-muted">Category: <span class="text-success">@Model.category.Name</span></p>
+                <p class="fw-bold">Supported Devices:</p>
+                <ul class="list-unstyled">
+                    @foreach (var device in Model.Device)
+                    {
+                        <li><i class="@device.Device.Icon text-danger me-2"></i> <span class="text-primary">@device.Device.Name</span></li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <img src="@($"{FileSetting.ImagePath}/{Model.Cover}")" alt="@Model.Name" class="img-fluid rounded" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@using E_commerce.Setting
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"]="Games"; 
+}
+@model List<Game>
+
+
+<a asp-action="Create" asp-controller="Games" class="btn btn-danger">
+    <i class="bi bi-plus-square"></i>
+    Add Games
+</a>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info mt-5" role="alert">
+        <h4 class="alert-heading">No Games Yet!</h4>
+        <p>Hey there!</p>
+        <p class="mb-0">It looks like there are no games added yet. Why not spread some joy and add some exciting games to the collection?</p>
+    </div>
+}
+else
+{
+    <div class="mt-5">
+        <table class="table table-bordered border-primary">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="border-1 border-success">
+                        <td> 
+                            <div class="d-flex">
+                                <div class="pe-4">
+                                <img src="@($"{FileSetting.ImagePath}/{item.Cover}")" alt="@item.Name"
+                                style="max-width:90px"/>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-cneter">
+                                <h4 style="color:gold">@item.Name</h4>
+                                <h5>@item.category.Name</h5>
+
+                            </div>
+                            </td>
+                            <td class="align-middle" >
+                                <div class="d-flex justify-content-end">
+                             <a asp-action="Update" asp-controller="Games" asp-route-id="@item.Id" 
+                                class="btn btn-info rounded rounded-3 me-2">
+                                 <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                <a asp-action="Delete" asp-controller="Games" asp-route-id="@item.Id" class="btn btn-danger rounded rounded-3">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
+                                </div>
+                            </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+}
+
+

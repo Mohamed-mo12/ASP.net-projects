@@ -1,8 +1,42 @@
-﻿@{
+﻿@using E_commerce.Setting
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<Game>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info mt-5" role="alert">
+        <h4 class="alert-heading">No Games Yet!</h4>
+        <p>Hey there!</p>
+        <p class="mb-0">It looks like there are no games added yet. Why not spread some joy and add some exciting games to the collection?</p>
+    </div>
+}
+else
+{
+    <div class="row mt-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <a asp-action="Details" asp-controller="Games" asp-route-id="@item.Id" class="card border-success mb-3 text-decoration-none rounded-3 overflow-hidden" style="max-width: 20rem;">
+                    <div class="card-body" style="background-image:url(@($"{FileSetting.ImagePath}/{item.Cover}")); background-size:cover;background-position:center;height:500px;">
+                        <div class=" d-flex align-items-end h-100">
+                            <span class="badge bg-secondary fs-3">@item.category.Name</span>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                            <h5 style="color: gold">@item.Name</h5>
+                            <div>
+                                @foreach (var item2 in item.Device)
+                                {
+                                    <i class="@item2.Device.Icon me-2 fs-4"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}

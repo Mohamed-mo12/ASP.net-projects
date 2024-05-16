@@ -1,0 +1,72 @@
+﻿@using E_commerce.Setting
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model UpdateViewModel
+@{
+    ViewData["Title"] = "Update Game";
+}
+
+<h4>
+
+    <i class="bi bi-plus-square"></i>
+    Update Game 
+</h4>
+
+<form asp-action="update" asp-controller="Games" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <label asp-for="Name" class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="Name" placeholder="Name" fdprocessedid="03sla8">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="CategoryId" class="form-label mt-4"></label>
+                <select class="form-select" asp-for="CategoryId" asp-items="Model.Categories" fdprocessedid="19ywk">
+                    <option value="" id="0"> --- select---- </option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="selectedDevice" class="form-label mt-4"></label>
+                <select class="form-select" asp-for="selectedDevice" asp-items="Model.Devices" fdprocessedid="19ywk">
+                    <option value="" id="0"> --- select---- </option>
+                </select>
+                <span asp-validation-for="selectedDevice" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Description" class="form-label mt-4"></label>
+                <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-light text-black mt-4">update</button>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center pt-4 overflow-hidden">
+            <img class="cover-preview d-none" alt="Cover" />
+        </div>
+    </div>
+
+</form>
+
+
+@section Scripts {
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/js/file-valid.js" asp-append-version="true"></script>
+    <script src="~/js/game-form.js" asp-append-version="true"></script>
+    <script>
+
+
+
+
+
+    </script>
+
+}
