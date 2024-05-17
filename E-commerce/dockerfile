@@ -1,0 +1,32 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+WORKDIR /source
+
+COPY *.sln .
+
+COPY E-commerce/*.csproj ./E-commerce/
+
+RUN dotnet restore
+
+COPY E-commerce/. ./E-commerce/
+
+WORKDIR /source/E-commerce
+
+RUN dotnet publish -c release -o /app --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+WORKDIR /app
+
+COPY --from=build /app ./
+
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+
+ENV ASPNETCORE_URLS=http://+:80
+
+
+EXPOSE 80
+
+ENTRYPOINT ["dotnet", "E-commerce.dll"]
+
